@@ -1,0 +1,41 @@
+<h2>My favorite books</h2>
+<div style="text-align: left;">
+    <table style="width: 300px;">
+        <tr>
+            <td>New book's name:</td>
+            <td>
+                <input #bookName placeholder="name">
+            </td>
+        </tr>
+        <tr>
+            <td>New author's name:</td>
+            <td>
+                <input #author placeholder="name">
+            </td>
+        </tr>
+        <tr>
+            <td>Release year:</td>
+            <td>
+                <input #releaseYear placeholder="name">
+            </td>
+        </tr>
+        <tr>
+            <button (click) = "add(bookName.value, author.value, releaseYear.value); bookName.value=''; author.value=''; releaseYear.value=''">
+                Add
+            </button>
+        </tr>
+    </table>
+</div>
+<div class="parent">
+    <ol class="books">
+        <li class="bookListItem" 
+        *ngFor="let eachBook of books"
+        >
+        <a [routerLink]="['/detail', eachBook.id]" style="text-decoration: none;">
+            {{eachBook.name}} - {{eachBook.author}} - {{eachBook.releaseYear}}
+        </a>
+        <button *ngIf="eachBook.id !== undefined" title="delete book" style="text-align: right;" (click)="delete(eachBook.id)">X</button>
+        </li>
+    </ol>
+    <!-- <app-book-detail [book]="selectedBook"></app-book-detail> -->
+</div>
