@@ -1,0 +1,28 @@
+<header style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">List Blogs</header>
+<table class="blog-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tin</th>
+        <th>Loại</th>
+        <th>Trạng thái</th>
+        <th>Vị trí</th>
+        <th>Ngày public</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let blog of blogs">
+        <td>{{ blog.id }}</td>
+        <td>{{ blog.title }}</td>
+        <td>{{ blog.category }}</td>
+        <td>{{ blog.public ? 'Published' : 'Draft' }}</td>
+        <td>{{ blog.position.join(', ') }}</td>
+        <td>{{ blog.data_pubblic }}</td>
+        <td><a [routerLink]="['/edit', blog.id]" class="edit-link">Edit</a></td>
+        <td><button (click)="onDelete(blog.id)" class="delete-btn">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  

@@ -1,0 +1,42 @@
+.blog-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .blog-table th, .blog-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .blog-table td:nth-child(2) {
+    text-align: left;
+  }
+  
+  .blog-table a.edit-link {
+    color: #007bff; 
+    text-decoration: none;  
+    cursor: pointer;
+  }
+  
+  .blog-table a.edit-link:hover {
+    text-decoration: underline; 
+  }
+  
+  .blog-table .delete-btn {
+    padding: 5px 10px;
+    border: 1px solid red; 
+    color: red;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  .blog-table .delete-btn:hover {
+    background-color: red; 
+    color: white; 
+  }
+  

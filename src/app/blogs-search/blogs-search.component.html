@@ -1,0 +1,15 @@
+<div class="blogs">
+    <h2>Search Blogs</h2>
+    <div class="search-box">
+      <input 
+        type="text" 
+        #searchBox 
+        (keyup)="search(searchBox.value)" 
+        placeholder="Tiêu đề">
+    </div>
+    <app-blogs-list *ngIf="(blogs$ | async) as blogs; else noBlogsFound" [blogs]="blogs"></app-blogs-list>
+    <ng-template #noBlogsFound>
+        <p>Không tìm thấy kết quả.</p>
+    </ng-template>
+  </div>
+  

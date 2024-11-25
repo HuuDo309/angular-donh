@@ -1,0 +1,43 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  app-header {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  app-footer {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1; 
+    height: 80%;
+  }
+  
+  app-menu {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .content-area {
+    width: 70%;
+    padding: 20px;
+  }
+  
+  app-page {
+    width: 100%;
+  }
+  
