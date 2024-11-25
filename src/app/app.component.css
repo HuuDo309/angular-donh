@@ -1,3 +1,6 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 .app-container {
     display: flex;
     flex-direction: column;
@@ -7,8 +10,9 @@
   app-header {
     height: 10%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
+    padding-left: 20px;
   }
   
   app-footer {
@@ -20,8 +24,8 @@
   
   .main-content {
     display: flex;
-    flex: 1; 
-    height: 80%;
+    flex-grow: 1; 
+    width: 100%;
   }
   
   app-menu {

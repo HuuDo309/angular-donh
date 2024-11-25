@@ -20,7 +20,7 @@
         <td>{{ blog.public ? 'Published' : 'Draft' }}</td>
         <td>{{ blog.position.join(', ') }}</td>
         <td>{{ blog.data_pubblic }}</td>
-        <td><a [routerLink]="['/edit', blog.id]" class="edit-link">Edit</a></td>
+        <td><a [routerLink]="['/blog/edit', blog.id]" style="text-decoration: none;">Edit</a></td>
         <td><button (click)="onDelete(blog.id)" class="delete-btn">Delete</button></td>
       </tr>
     </tbody>

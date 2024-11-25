@@ -1,0 +1,49 @@
+.blogs {
+    padding: 0px;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 20px;
+  }
+  
+  .search-box label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px; 
+  }
+  
+  .search-box input {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px; 
+  }
+  
+  .search-button {
+    padding: 10px 15px;
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    width: 9%;
+    margin-bottom: 20px;
+  }
+  
+  .search-button:hover {
+    background-color: #218838; 
+  }
+  
+  .app-blogs-list {
+    margin-top: 20px;
+  }
+  

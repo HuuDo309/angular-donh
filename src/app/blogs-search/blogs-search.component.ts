@@ -13,18 +13,24 @@ import { BlogService } from '../blog.service';
 export class BlogsSearchComponent implements OnInit {
   blogs$?: Observable<Blog[]>;
   private searchedSubject = new Subject<string>();
+
   constructor(private blogService: BlogService) { }
 
   search(searchedString: string): void {
-    console.log(`searchedString = ${searchedString}`);
     this.searchedSubject.next(searchedString);
   }
 
   ngOnInit(): void {
     this.blogs$ = this.searchedSubject.pipe(
-      debounceTime(300), 
+      debounceTime(300),
       distinctUntilChanged(),
-      switchMap((searchedString: string) => this.blogService.searchBlogs(searchedString))
-    )
+      switchMap((searchedString: string) => {
+        if (searchedString) {
+          return this.blogService.searchBlogs(searchedString);
+        } else {
+          return this.blogService.getBlogs();
+        }
+      })
+    );
   }
 }
