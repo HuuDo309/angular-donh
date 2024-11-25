@@ -1,0 +1,25 @@
+.parent {
+    display: flex;
+}
+
+.usercards {
+    background: #3399ff;
+    padding: 0.5em 1em 0.5em 1.5em;
+    margin: 1em;
+    max-width: 16em;
+}
+
+.selected {
+    background: mediumaquamarine !important;
+    color: rgb(245, 10, 10);
+}
+
+.usercards .usercardList {
+    font-size: 0.875em;
+    font-family: Georgia, serif;
+    background: #cce5ff;
+    padding: 0.3em;
+    margin: 0.2em;
+    text-align: left;
+}
+

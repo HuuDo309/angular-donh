@@ -1,0 +1,11 @@
+<div id="books">
+    <h4>Book search</h4> 
+    <input #searchBox (keyup)="search(searchBox.value)" /> 
+    <ul class="books">
+      <li *ngFor="let book of books$ | async" class="bookListItem">
+        <a routerLink="/detail/{{book.id}}">
+          {{book.name}} - {{book.author}}
+        </a>
+      </li>
+    </ul>
+  </div>
