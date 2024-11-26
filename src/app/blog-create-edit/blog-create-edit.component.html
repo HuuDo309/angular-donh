@@ -1,4 +1,13 @@
-<header style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">Edit Blogs</header>
+<header *ngIf="isEditMode; else newHeader" style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">
+  Edit Blogs
+</header>
+
+<ng-template #newHeader>
+  <header style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">
+    New Blog
+  </header>
+</ng-template>
+
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="blog-form-container">
   <div class="form-group">
     <label for="title">Tiêu đề</label>

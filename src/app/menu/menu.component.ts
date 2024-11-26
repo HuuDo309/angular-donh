@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -10,11 +11,19 @@ export class MenuComponent implements OnInit {
 
   blogId: string | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.blogId = params['id'];
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      const currentUrl = this.router.url;
+      const match = currentUrl.match(/^\/blogs\/(\d+)$/); 
+      if (match) {
+        this.blogId = match[1];  
+      } else {
+        this.blogId = null;
+      }
     });
   }
 }

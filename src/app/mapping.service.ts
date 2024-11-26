@@ -34,8 +34,9 @@ export class MappingService {
   ]);
   
 
-  getCategoryName(category: number): string {
-    return this.categoryMap.get(category) || 'Không xác định';
+  getCategoryName(category: any): string {
+    const categoryId = Number(category); 
+    return this.categoryMap.get(categoryId) || 'Không xác định';
   }
 
   getCategories(): { value: number, label: string }[] {
