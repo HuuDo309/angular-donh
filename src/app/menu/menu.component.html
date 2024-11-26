@@ -1,15 +1,14 @@
 <table class="table-menu">
-    <tr>
-      <td><a routerLink="/blogs-list">List</a></td>
-    </tr>
-    <tr>
-      <td><a routerLink="/create">New</a></td>
-    </tr>
-    <tr>
-      <td><a routerLink="/search">Search</a></td>
-    </tr>
-    <tr>
-      <td><a routerLink="/edit/:id">Edit</a></td>
-    </tr>
-  </table>
-  
+  <tr>
+    <td [routerLinkActive]="'selected'"><a routerLink="/blogs">List</a></td>
+  </tr>
+  <tr>
+    <td [routerLinkActive]="'selected'"><a routerLink="/create">New</a></td>
+  </tr>
+  <tr>
+    <td [routerLinkActive]="'selected'"><a routerLink="/search">Search</a></td>
+  </tr>
+  <tr>
+    <td [routerLinkActive]="'selected'"><a [routerLink]="['/blogs', blogId]">Edit</a></td>
+  </tr>
+</table>

@@ -1,52 +1,65 @@
-<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="title">Tiêu đề</label>
-      <input id="title" formControlName="title" type="text" />
+<header style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">Edit Blogs</header>
+<form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="blog-form-container">
+  <div class="form-group">
+    <label for="title">Tiêu đề</label>
+    <input id="title" formControlName="title">
+  </div>
+
+  <div class="form-group">
+    <label for="des">Mô tả ngắn</label>
+    <input id="des" formControlName="des">
+  </div>
+
+  <div class="form-group">
+    <label for="detail">Chi tiết</label>
+    <textarea id="detail" formControlName="detail" rows="10"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="thumbs">Hình ảnh</label>
+    <input type="file" id="thumbs" formControlName="thumbs">
+  </div>
+
+  <div class="form-group">
+    <label for="category">Loại</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [value]="category.value">
+        {{ category.label }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="position">Vị trí</label>
+    <div *ngFor="let position of positions; let i = index">
+      <input
+        type="checkbox"
+        [value]="position.value"
+        [checked]="isPositionSelected(position.value)"
+        (change)="onPositionChange(i, $event)" />
+      {{ position.label }}
     </div>
+  </div>
   
-    <div class="form-group">
-      <label for="des">Mô tả ngắn</label>
-      <input id="des" formControlName="des" type="text" />
+  <div class="form-group">
+    <label for="public">Public</label>
+    <div *ngFor="let option of publicOptions">
+      <input 
+        type="radio" 
+        [value]="option.value" 
+        formControlName="public" 
+        [checked]="isPublicSelected(option.value)">
+      {{ option.label }}
     </div>
+  </div>
   
-    <div class="form-group">
-      <label for="detail">Chi tiết</label>
-      <textarea id="detail" formControlName="detail"></textarea>
-    </div>
-  
-    <div class="form-group">
-      <label for="category">Loại</label>
-      <select id="category" formControlName="category">
-        <option value="1">Loại 1</option>
-        <option value="2">Loại 2</option>
-      </select>
-    </div>
-  
-    <div class="form-group">
-      <label for="position">Vị trí</label>
-      <input id="position" formControlName="position" type="checkbox" />
-    </div>
-  
-    <div class="form-group">
-      <label for="public">Public</label>
-      <input id="public" formControlName="public" type="checkbox" />
-    </div>
-  
-    <div class="form-group">
-      <label for="data_pubblic">Ngày xuất bản</label>
-      <input id="data_pubblic" formControlName="data_pubblic" type="date" />
-    </div>
-  
-    <div class="form-group">
-      <label for="thumbs">Hình ảnh</label>
-      <input id="thumbs" formControlName="thumbs" type="file" />
-    </div>
-  
-    <div class="form-group buttons">
-      <button type="submit" [disabled]="!blogForm.valid" class="submit-button">
-        {{ isEditMode ? 'Cập nhật' : 'Lưu' }}
-      </button>
-      <button type="button" (click)="onClear()" class="clear-button">Clear</button>
-    </div>
-  </form>
-  
+  <div class="form-group">
+    <label for="data_pubblic">Ngày xuất bản</label>
+    <input type="date" id="data_pubblic" formControlName="data_pubblic">
+  </div>
+
+  <div class="form-group buttons">
+    <button type="submit" [disabled]="!blogForm.valid" class="submit-button">Submit</button>
+    <button type="button" (click)="onClear()" class="clear-button">Clear</button>
+  </div>
+</form>

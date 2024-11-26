@@ -6,11 +6,11 @@ import { BlogListComponent } from './blogs-list/blogs-list.component';
 import { BlogsSearchComponent } from './blogs-search/blogs-search.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/blogs-list', pathMatch: 'full'},
-  { path: 'blogs-list', component: BlogListComponent},
+  { path: '', redirectTo: '/blogs', pathMatch: 'full'},
+  { path: 'blogs', component: BlogListComponent},
   { path: 'search', component: BlogsSearchComponent},
   { path: 'create', component: BlogCreateEditComponent},
-  { path: 'blog/edit/:id', component: BlogCreateEditComponent}
+  { path: 'blogs/:id', component: BlogCreateEditComponent}
 ];
 
 @NgModule({

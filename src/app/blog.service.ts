@@ -53,7 +53,7 @@ export class BlogService {
   deleteBlog(blogId: number): Observable<Blog> {
     const url = `${this.blogsUrl}/${blogId}`;
     return this.http.delete<Blog>(url, httpOptions).pipe(
-      tap(_ => console.log(`Deleted book with id ${blogId}`))
+      tap(_ => console.log(`Deleted blog with id ${blogId}`))
     )
   }
 }
