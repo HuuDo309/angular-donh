@@ -65,6 +65,9 @@
   <div class="form-group">
     <label for="data_pubblic">Ngày xuất bản</label>
     <input type="date" id="data_pubblic" formControlName="data_pubblic">
+    <small *ngIf="blogForm.get('data_pubblic')?.errors?.['dateInvalid']">
+      Ngày không hợp lệ.
+    </small>
   </div>
 
   <div class="form-group buttons">

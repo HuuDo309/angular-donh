@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../blog.service';
 import { MappingService } from '../mapping.service';
-import { Blog } from '../models/blogs';
+import { DateValidator } from '../custom-validators';
 
 @Component({
   selector: 'app-blog-create-edit',
@@ -36,7 +36,7 @@ export class BlogCreateEditComponent implements OnInit {
       category: ['', Validators.required],
       position: this.fb.array([], Validators.required),
       public: [null, Validators.required],
-      data_pubblic: [null, Validators.required],
+      data_pubblic: [null, [Validators.required, DateValidator]],
       thumbs: [null]
     });    
   }
@@ -130,7 +130,6 @@ export class BlogCreateEditComponent implements OnInit {
     }
   }
   
-
   onClear(): void {
     this.blogForm.reset();
   }
