@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 import { Blog } from './models/blogs';
 
@@ -22,10 +22,16 @@ export class BlogService {
     return this.http.get<Blog[]>(this.blogsUrl); 
   }
 
+  getAllBlogIds(): Observable<number[]> {
+    return this.http.get<{ id: number }[]>(`${this.blogsUrl}`).pipe(
+      map(blogs => blogs.map(blog => blog.id))
+    );
+  }
+  
   getBlogFromId(id: number): Observable<Blog> {
     const url = `${this.blogsUrl}/${id}`;
     return this.http.get<Blog>(url).pipe(
-      tap(selectedBlog => console.log(`selected Blog = ${JSON.stringify(selectedBlog)}`))
+      tap(selectedBlog => console.log(`selected Blog = ${JSON.stringify(selectedBlog)}`)),
     )
   }
 

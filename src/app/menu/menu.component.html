@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td [routerLinkActive]="'selected'" [routerLinkActiveOptions]="{ exact: true }">
-      <a [routerLink]="['/blogs', blogId]">Edit</a>
+      <a (click)="toEdit()" [routerLink]="['/blogs', blogId]">Edit</a>
     </td>
   </tr>
 </table>
