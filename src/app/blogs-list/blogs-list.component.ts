@@ -21,8 +21,15 @@ export class BlogListComponent implements OnInit {
   }
 
   onDelete(blogId: number): void {
-    this.blogService.deleteBlog(blogId).subscribe(() => {
-      this.blogs = this.blogs.filter(blog => blog.id !== blogId);
-    });
+    const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa bài viết này không?');
+    
+    if (confirmDelete) {
+      this.blogService.deleteBlog(blogId).subscribe(() => {
+        this.blogs = this.blogs.filter(blog => blog.id !== blogId);
+      });
+    } else {
+      console.log('hủy');
+    }
   }
+  
 }
