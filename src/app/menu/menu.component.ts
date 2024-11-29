@@ -16,32 +16,40 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private blogService: BlogService) {}
 
   toEdit(): void {
-    let idToCheck = this.blogId;
-
+    let idToCheck = this.blogId; 
+  
     if (!idToCheck) {
-      const enteredId = prompt('Vui lòng nhập Blog ID:');
-      if (enteredId && !isNaN(Number(enteredId))) {
-        idToCheck = enteredId;
+      const enteredId = prompt('Vui lòng nhập ID:');
+  
+      if (enteredId !== null) { 
+        if (enteredId && !isNaN(Number(enteredId))) {
+          idToCheck = enteredId;
+        } else {
+          alert('ID không hợp lệ.');
+          this.router.navigate(['/blogs']);
+          return;
+        }
       } else {
-        alert('ID không hợp lệ.');
+        console.log('hủy');
         this.router.navigate(['/blogs']);
         return;
       }
     }
 
     if (idToCheck && this.isBlogIdValid(Number(idToCheck))) {
-      this.blogId = idToCheck;
+      this.blogId = idToCheck; 
       this.router.navigate([`/blogs/${this.blogId}`]);
     } else {
       const userConfirmed = confirm('Blog không tồn tại. Bạn có muốn tạo blog mới không?');
-    
+      
       if (userConfirmed) {
-        this.router.navigate(['/create']);
+        this.router.navigate(['/create']); 
       } else {
-        this.router.navigate(['/blogs']);
+        this.router.navigate(['/blogs']); 
       }
     }
   }
+  
   
 
   isBlogIdValid(blogId: number): boolean {
