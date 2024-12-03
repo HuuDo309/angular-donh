@@ -13,6 +13,7 @@ import { DateValidator } from '../custom-validators';
 export class BlogCreateEditComponent implements OnInit {
   blogForm!: FormGroup;
   isEditMode: boolean = false; 
+  submitted = false;
   blogId: number | null = null;
 
   categories: { value: number, label: string }[] = [];
@@ -108,6 +109,7 @@ export class BlogCreateEditComponent implements OnInit {
   }
   
   onSubmit(): void {
+    this.submitted = true;
     if (this.blogForm.valid) {
       const formData = this.blogForm.value;
       if (this.isEditMode) {
@@ -130,6 +132,12 @@ export class BlogCreateEditComponent implements OnInit {
     }
   }
   
+  resetSubmittedState(): void {
+    if (this.submitted) {
+      this.submitted = false;
+    }
+  }
+
   onClear(): void {
     this.blogForm.reset();
   }

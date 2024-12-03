@@ -4,6 +4,7 @@
       <tr>
         <th>ID</th>
         <th>Tin</th>
+        <th>Ảnh</th>
         <th>Loại</th>
         <th>Trạng thái</th>
         <th>Vị trí</th>
@@ -16,6 +17,14 @@
       <tr *ngFor="let blog of blogs">
         <td>{{ blog.id }}</td>
         <td>{{ blog.title }}</td>
+        <td>
+          <div *ngIf="blog.thumbs">
+            <img class="thumb-image" [src]="blog.thumbs" alt="{{ blog.title }}"/>
+          </div>
+          <div *ngIf="!blog.thumbs">
+            Null
+          </div>
+        </td>
         <td>{{ mappingService.getCategoryName(blog.category) }}</td>
         <td>{{ mappingService.getPublicStatus(blog.public) }}</td>
         <td>{{ mappingService.getPositionNames(blog.position) }}</td>

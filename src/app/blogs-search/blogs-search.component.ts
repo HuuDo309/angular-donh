@@ -11,7 +11,7 @@ import { BlogService } from '../blog.service';
   styleUrls: ['./blogs-search.component.css']
 })
 export class BlogsSearchComponent implements OnInit {
-  blogs$?: Observable<Blog[]>;
+  blogs$?: Observable<Blog[]> = of([]);
   private searchedSubject = new Subject<string>();
 
   constructor(private blogService: BlogService) { }
@@ -25,7 +25,7 @@ export class BlogsSearchComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((searchedString: string) => {
-        if (searchedString) {
+        if (searchedString.trim()) {
           return this.blogService.searchBlogs(searchedString);
         } else {
           return this.blogService.getBlogs();

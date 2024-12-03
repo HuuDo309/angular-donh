@@ -11,31 +11,47 @@
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="blog-form-container">
   <div class="form-group">
     <label for="title">Tiêu đề</label>
-    <input id="title" formControlName="title">
+    <input id="title" formControlName="title" (input)="resetSubmittedState()">
+    <small 
+      *ngIf="submitted && blogForm.get('title')?.errors?.['required']" class="error-message">
+      Vui lòng nhập tiêu đề.
+    </small>
   </div>
 
   <div class="form-group">
     <label for="des">Mô tả ngắn</label>
-    <input id="des" formControlName="des">
+    <input id="des" formControlName="des" (input)="resetSubmittedState()"> 
+    <small 
+      *ngIf="submitted && blogForm.get('des')?.errors?.['required']" class="error-message">
+      Vui lòng nhập mô tả ngắn.
+    </small>
   </div>
 
   <div class="form-group">
     <label for="detail">Chi tiết</label>
-    <textarea id="detail" formControlName="detail" rows="10"></textarea>
+    <textarea id="detail" formControlName="detail" rows="10" (input)="resetSubmittedState()"></textarea>
+    <small 
+      *ngIf="submitted && blogForm.get('detail')?.errors?.['required']" class="error-message">
+      Vui lòng nhập thông tin chi tiết.
+    </small>
   </div>
 
   <div class="form-group">
     <label for="thumbs">Hình ảnh</label>
-    <input type="file" id="thumbs" formControlName="thumbs">
+    <input type="file" id="thumbs" formControlName="thumbs" (input)="resetSubmittedState()">
   </div>
 
   <div class="form-group">
     <label for="category">Loại</label>
-    <select id="category" formControlName="category">
+    <select id="category" formControlName="category" (change)="resetSubmittedState()">
       <option *ngFor="let category of categories" [value]="category.value">
         {{ category.label }}
       </option>
     </select>
+    <small 
+      *ngIf="submitted && blogForm.get('category')?.errors?.['required']" class="error-message">
+      Vui lòng chọn thể loại.
+    </small>
   </div>
 
   <div class="form-group">
@@ -45,9 +61,14 @@
         type="checkbox"
         [value]="position.value"
         [checked]="isPositionSelected(position.value)"
-        (change)="onPositionChange(i, $event)" />
+        (change)="onPositionChange(i, $event)" 
+        (change)="resetSubmittedState()">
       {{ position.label }}
     </div>
+    <small 
+      *ngIf="submitted && blogForm.get('position')?.errors?.['required']" class="error-message">
+      Vui lòng chọn vị trí.
+    </small>
   </div>
   
   <div class="form-group">
@@ -56,22 +77,31 @@
       <input 
         type="radio" 
         [value]="option.value" 
-        formControlName="public" 
-        [checked]="isPublicSelected(option.value)">
+        formControlName="public"
+        (change)="resetSubmittedState()">
       {{ option.label }}
     </div>
+    <small 
+      *ngIf="submitted && blogForm.get('public')?.errors?.['required']" class="error-message">
+      Vui lòng chọn trạng thái.
+    </small>
   </div>
+  
   
   <div class="form-group">
     <label for="data_pubblic">Ngày xuất bản</label>
-    <input type="date" id="data_pubblic" formControlName="data_pubblic">
-    <small *ngIf="blogForm.get('data_pubblic')?.errors?.['dateInvalid']">
+    <input type="date" id="data_pubblic" formControlName="data_pubblic" (change)="resetSubmittedState()">
+    <small 
+      *ngIf="submitted && blogForm.get('data_pubblic')?.errors?.['required']" class="error-message">
+      Vui lòng chọn ngày xuất bản.
+    </small>
+    <small *ngIf="blogForm.get('data_pubblic')?.errors?.['dateInvalid']" class="error-message">
       Ngày không hợp lệ.
     </small>
   </div>
 
   <div class="form-group buttons">
-    <button type="submit" [disabled]="!blogForm.valid" class="submit-button">Submit</button>
+    <button type="submit" class="submit-button">Submit</button>
     <button type="button" (click)="onClear()" class="clear-button">Clear</button>
   </div>
 </form>

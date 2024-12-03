@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Blog } from './models/blogs';
+import { MappingService } from './mapping.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,11 +16,18 @@ const httpOptions = {
 export class BlogService {
 
   private blogsUrl = 'http://localhost:3000/blogs'; 
+  private blogs: Blog[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private mappingService: MappingService,
+    private http: HttpClient) { }
 
   getBlogs(): Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.blogsUrl); 
+    return this.http.get<Blog[]>(this.blogsUrl).pipe(
+      tap(blogs => {
+        this.blogs = blogs;
+      })
+    );
   }
 
   getAllBlogIds(): Observable<number[]> {
@@ -51,9 +59,15 @@ export class BlogService {
     if (!typedString.trim()) {
       return of([]);
     }
-    return this.http.get<Blog[]>(`${this.blogsUrl}?title_like=${typedString}`).pipe(
-      tap(foundedBlog => console.log(`founded blogs = ${JSON.stringify(foundedBlog)}`)),
-    )
+    const filteredBlogs = this.blogs.filter(blog =>
+      blog.title.toLowerCase().trim().includes(typedString.toLowerCase()) ||  
+      (this.mappingService.categoryMap.get(blog.category)?.toLowerCase().trim().includes(typedString.toLowerCase())) ||  
+      (this.mappingService.publicMap.get(blog.public)?.toLowerCase().trim().includes(typedString.toLowerCase())) ||  
+      blog.position.some(pos => this.mappingService.positionMap.get(pos)?.toLowerCase().trim().includes(typedString.toLowerCase()))  
+    );
+    
+
+    return of(filteredBlogs);
   }
 
   deleteBlog(blogId: number): Observable<Blog> {

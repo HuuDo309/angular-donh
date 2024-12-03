@@ -93,4 +93,10 @@ select {
   width: auto;
 }
 
+.error-message {
+  color: red; 
+  font-size: 1rem; 
+  margin-top: 5px; 
+  display: block;
+}
 
