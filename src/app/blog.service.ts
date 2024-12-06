@@ -65,8 +65,6 @@ export class BlogService {
       (this.mappingService.publicMap.get(blog.public)?.toLowerCase().trim().includes(typedString.toLowerCase())) ||  
       blog.position.some(pos => this.mappingService.positionMap.get(pos)?.toLowerCase().trim().includes(typedString.toLowerCase()))  
     );
-    
-
     return of(filteredBlogs);
   }
 

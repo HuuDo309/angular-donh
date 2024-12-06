@@ -17,7 +17,8 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 registerLocaleData(en);
 
@@ -38,7 +39,9 @@ registerLocaleData(en);
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzPaginationModule,
+    NzSpinModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -26,9 +26,9 @@ export class BlogsSearchComponent implements OnInit {
       distinctUntilChanged(),
       switchMap((searchedString: string) => {
         if (searchedString.trim()) {
-          return this.blogService.searchBlogs(searchedString);
+          return this.blogService.searchBlogs(searchedString); 
         } else {
-          return this.blogService.getBlogs();
+          return this.blogService.getBlogs(); 
         }
       })
     );

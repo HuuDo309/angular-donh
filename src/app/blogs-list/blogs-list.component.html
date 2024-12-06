@@ -1,5 +1,5 @@
 <header style="font-size: 200%; font-family: Arial, Helvetica, sans-serif;">List Blogs</header>
-<table class="blog-table">
+  <table class="blog-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let blog of blogs">
+      <tr *ngFor="let blog of pagedBlogs">
         <td>{{ blog.id }}</td>
         <td>{{ blog.title }}</td>
         <td>
@@ -22,7 +22,6 @@
             <img class="thumb-image" [src]="blog.thumbs" alt="{{ blog.title }}"/>
           </div>
           <div *ngIf="!blog.thumbs">
-            Null
           </div>
         </td>
         <td>{{ mappingService.getCategoryName(blog.category) }}</td>
@@ -34,4 +33,14 @@
       </tr>
     </tbody>
   </table>
-  
+
+  <nz-pagination
+  [nzPageIndex]="currentPage"
+  [nzTotal]="totalBlogs"
+  [nzPageSize]="pageSize"
+  nzShowSizeChanger
+  [nzPageSizeOptions]="[3, 5, 10, 15]"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)"
+  nzShowQuickJumper>
+  </nz-pagination>
